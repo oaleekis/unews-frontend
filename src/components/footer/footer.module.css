@@ -1,0 +1,25 @@
+.footer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100px;
+    background-color: #f8f9fa;
+    border-top: 1px solid #e9ecef;
+    font-size: 14px;
+    color: #495057;
+    text-align: center;
+    margin-top: 20px;
+}
+
+.nav_list {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    list-style: none;
+    padding: 0;
+}
+
+.nav_item {
+    margin: 0 10px;
+    cursor: pointer;
+}

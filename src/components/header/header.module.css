@@ -1,0 +1,154 @@
+.header {
+    color: white;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 50;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    background-color: rgba(9, 9, 9, 0.8);
+  }
+  
+  .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 1rem 1rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .logo {
+    display: flex;
+    align-items: center;
+    min-width: 200px;
+  }
+
+  .logo a {
+    color: white;
+    text-decoration: none;
+    font-size: 1.5rem;
+    font-weight: 700;
+  }
+  
+  .nav {
+    flex: 1;
+    text-align: center;
+  }
+  
+  .nav ul {
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+  }
+  
+  .nav a {
+    color: inherit;
+    text-decoration: none;
+    font-weight: 400;
+  }
+  
+  .nav a:hover {
+    color: #b3b3b3;
+  }
+  
+  .button {
+    background-color: #09ec82;
+    display: flex;
+    align-items: center;
+    color: white;
+    font-weight: 400;
+    padding: 0.3rem 1rem;
+    border-radius: 0.25rem;
+    transition: background-color 0.3s;
+    margin-left: 1rem;
+  }
+
+  .buttonExit {
+    background-color: #ff0000;
+    display: flex;
+    align-items: center;
+    color: white;
+    font-weight: 400;
+    padding: 0.3rem 1rem;
+    border-radius: 0.25rem;
+    transition: background-color 0.3s;
+    margin-left: 1rem;
+  }
+
+  .button_icon {
+    margin-right: 0.5rem;
+  }
+  
+  .button:hover {
+    background-color: #058a4c;
+    cursor: pointer;
+  }
+  .buttonContainer {
+    display: flex;
+    justify-content: end;
+    min-width: 200px;
+  }
+
+  /* Botão hamburguer */
+.hamburger {
+  display: none;
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  color: white;
+  cursor: pointer;
+  z-index: 110;
+}
+
+/* Menu mobile */
+.mobileMenu {
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: 70%;
+  height: 100vh;
+  background-color: rgba(9, 9, 9, 0.95);
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  z-index: 100;
+}
+
+.mobileMenu ul {
+  list-style: none;
+  padding: 10px;
+}
+
+.mobileMenu li {
+  margin-top: 2rem;
+}
+
+.mobileMenu a {
+  color: white;
+  font-size: 1.2rem;
+  text-decoration: none;
+}
+
+.mobileMenu button {
+  margin-top: 2rem;
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+  .nav, .buttonContainer {
+    display: none;
+  }
+
+  .hamburger {
+    display: block;
+  }
+
+  .logo {
+    min-width: auto;
+  }
+
+  .button {
+    padding: 5px 10px;
+  }
+}
