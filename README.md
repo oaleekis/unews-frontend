@@ -9,7 +9,7 @@ Siga os passos abaixo para configurar o ambiente de desenvolvimento:
 1. Clone o repositório:
     ```bash
     git clone https://github.com/oaleekis/unews-frontend.git
-    cd unews-frontend
+    unews-frontend
     ```
 
 2. Instale as dependências:
@@ -19,7 +19,7 @@ Siga os passos abaixo para configurar o ambiente de desenvolvimento:
 
 3. Duplique o arquivo `.env.example` e renomeie para `.env.local`:
     ```bash
-    cp .env.example .env.local
+    .env.example .env.local
     ```
 
 4. Altere as variáveis de ambiente no arquivo `.env.local` conforme necessário. Certifique-se de configurar corretamente as variáveis para conectar ao backend e outros serviços necessários.
@@ -28,7 +28,7 @@ Siga os passos abaixo para configurar o ambiente de desenvolvimento:
 
 ### `npm run start`
 
-Inicia o servidor em produção com o código compilado.
+Inicia o projeto
 
 ## Backend
 
