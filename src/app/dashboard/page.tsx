@@ -97,6 +97,8 @@ const DashboardPage: React.FC = () => {
       setTitle("");
       setContent("");
       setEditingNews(null);
+      fetchNews(token, 1); 
+      setPage(1);
     } catch (err) {
       setError((err as Error).message);
     }
@@ -114,6 +116,8 @@ const DashboardPage: React.FC = () => {
       });
       if (!res.ok) throw new Error("Erro ao excluir notícia");
       setNews((prev) => prev.filter((item) => item.id !== id));
+      fetchNews(token, 1); 
+      setPage(1);
     } catch (err) {
       setError((err as Error).message);
     }
@@ -123,6 +127,7 @@ const DashboardPage: React.FC = () => {
     setTitle(newsItem.title);
     setContent(newsItem.content || "");
     setEditingNews(newsItem);
+    fetchNews(localStorage.getItem("token") || "", page);
   };
 
   if (loading) {

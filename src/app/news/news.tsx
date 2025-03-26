@@ -15,23 +15,32 @@ interface NewsItem {
 const News: React.FC = () => {
   const [news, setNews] = useState<NewsItem[]>([]);
   const [loading, setLoading] = useState(false);
+  const [page, setPage] = useState(1);
+  const [totalPages, setTotalPages] = useState(1);
 
   useEffect(() => {
-    fetchNews();
-  }, []);
+    fetchNews(page);
+  }, [page]);
 
-  const fetchNews = async () => {
+  const fetchNews = async (pageNum: number) => {
     setLoading(true);
     try {
-      const res = await fetch(`${API_URL}/news`);
+      const res = await fetch(`${API_URL}/news?page=${pageNum}&limit=5`);
       if (!res.ok) throw new Error("Erro ao buscar notícias");
 
-      const data = await res.json();
+      const { data, totalPages } = await res.json();
       setNews(data);
+      setTotalPages(totalPages); // Atualiza o total de páginas
     } catch (err) {
       console.error(err);
     } finally {
       setLoading(false);
+    }
+  };
+
+  const handlePageChange = (newPage: number) => {
+    if (newPage >= 1 && newPage <= totalPages) {
+      setPage(newPage);
     }
   };
 
@@ -55,6 +64,27 @@ const News: React.FC = () => {
         </ul>
 
         {loading && <p className="text-center mt-4">Carregando...</p>}
+
+        {/* Paginação */}
+        <div className="flex justify-center mt-4 space-x-4">
+          <button
+            onClick={() => handlePageChange(page - 1)}
+            disabled={page === 1}
+            className="bg-gray-300 p-2 rounded disabled:opacity-50"
+          >
+            Anterior
+          </button>
+          <span className="p-2">
+            Página {page} de {totalPages}
+          </span>
+          <button
+            onClick={() => handlePageChange(page + 1)}
+            disabled={page === totalPages}
+            className="bg-gray-300 p-2 rounded disabled:opacity-50"
+          >
+            Próxima
+          </button>
+        </div>
       </div>
     </div>
   );
