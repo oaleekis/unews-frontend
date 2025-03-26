@@ -46,4 +46,4 @@ O sistema possui uma tela de dashboard onde cada autor pode criar e gerenciar su
 ## Telas Principais
 
 - **Dashboard**: Área restrita para autores gerenciarem suas notícias.
-- **Tela de Notícias** (`/news`): Exibe todas as notícias de todos os autores, com opções de filtro e busca.
+- **Tela de Notícias**: Exibe todas as notícias de todos os autores, com opções de filtro e busca.
