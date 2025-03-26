@@ -22,6 +22,9 @@ const DashboardPage: React.FC = () => {
   const [error, setError] = useState<string | null>(null);
   const [editingNews, setEditingNews] = useState<News | null>(null);
   const router = useRouter();
+  const [page, setPage] = useState(1);
+  const [totalPages, setTotalPages] = useState(1);
+
 
   useEffect(() => {
     const token = localStorage.getItem("token");
@@ -32,18 +35,27 @@ const DashboardPage: React.FC = () => {
     }
   }, []);
 
-  const fetchNews = async (token: string) => {
+  const fetchNews = async (token: string, pageNum = 1) => {
     try {
-      const res = await fetch(`${apiUrl}/news/me`, {
+      const res = await fetch(`${apiUrl}/news/me?page=${pageNum}&limit=5`, {
         headers: { Authorization: `Bearer ${token}` },
       });
       if (!res.ok) throw new Error("Erro ao buscar notícias");
-      const data = await res.json();
+  
+      const { data, totalPages } = await res.json();
       setNews(data);
+      setTotalPages(totalPages);
     } catch (err) {
       setError((err as Error).message);
     } finally {
       setLoading(false);
+    }
+  };
+
+  const handlePageChange = (newPage: number) => {
+    if (newPage >= 1 && newPage <= totalPages) {
+      setPage(newPage);
+      fetchNews(localStorage.getItem("token") || "", newPage);
     }
   };
 
@@ -173,6 +185,23 @@ const DashboardPage: React.FC = () => {
                 ))}
               </ul>
             )}
+          </div>
+          <div className="flex justify-center mt-4 space-x-4">
+            <button
+              onClick={() => handlePageChange(page - 1)}
+              disabled={page === 1}
+              className="bg-gray-300 p-2 rounded disabled:opacity-50"
+            >
+              Anterior
+            </button>
+            <span className="p-2">{page} de {totalPages}</span>
+            <button
+              onClick={() => handlePageChange(page + 1)}
+              disabled={page === totalPages}
+              className="bg-gray-300 p-2 rounded disabled:opacity-50"
+            >
+              Próxima
+            </button>
           </div>
         </div>
       </div>
